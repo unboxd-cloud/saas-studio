@@ -4,6 +4,7 @@ export * from './resources/auth';
 export * from './resources/deployments';
 export * from './resources/graph';
 export * from './resources/mcp';
+export * from './resources/onboarding';
 export * from './resources/providers';
 export * from './resources/scorecards';
 export * from './resources/templates';

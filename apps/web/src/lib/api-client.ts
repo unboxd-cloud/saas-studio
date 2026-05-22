@@ -25,5 +25,8 @@ export const api = {
   createDeployment: (input: Record<string, unknown>) => apiRequest('/v1/deployments', { method: 'POST', body: JSON.stringify(input) }),
   queryGraph: (input: Record<string, unknown>) => apiRequest('/v1/graph/query', { method: 'POST', body: JSON.stringify(input) }),
   runAgent: (agentId: string, input: Record<string, unknown>) => apiRequest(`/v1/agents/${agentId}/runs`, { method: 'POST', body: JSON.stringify(input) }),
-  runScorecard: (scorecardId: string, input: Record<string, unknown>) => apiRequest(`/v1/scorecards/${scorecardId}/runs`, { method: 'POST', body: JSON.stringify(input) })
+  runScorecard: (scorecardId: string, input: Record<string, unknown>) => apiRequest(`/v1/scorecards/${scorecardId}/runs`, { method: 'POST', body: JSON.stringify(input) }),
+  createOnboardingSession: (input: Record<string, unknown>) => apiRequest('/v1/onboarding/sessions', { method: 'POST', body: JSON.stringify(input) }),
+  updateOnboardingSession: (sessionId: string, input: Record<string, unknown>) => apiRequest(`/v1/onboarding/sessions/${sessionId}`, { method: 'PATCH', body: JSON.stringify(input) }),
+  runOnboarding: (sessionId: string, input: Record<string, unknown>) => apiRequest(`/v1/onboarding/sessions/${sessionId}/run`, { method: 'POST', body: JSON.stringify(input) })
 };
