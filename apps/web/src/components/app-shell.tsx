@@ -2,7 +2,9 @@ import Link from 'next/link';
 import type { ReactNode } from 'react';
 
 const nav = [
+  ['Onboarding', '/onboarding'],
   ['Dashboard', '/dashboard'],
+  ['Flows', '/flows'],
   ['Builder', '/builder'],
   ['Generate', '/generate'],
   ['Tenants', '/tenants'],
@@ -11,7 +13,8 @@ const nav = [
   ['Workflows', '/workflows'],
   ['Agents', '/agents'],
   ['Deployments', '/deployments'],
-  ['Audit', '/audit']
+  ['Audit', '/audit'],
+  ['Settings', '/settings']
 ];
 
 export function AppShell({ children }: { children: ReactNode }) {
