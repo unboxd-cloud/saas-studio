@@ -2,6 +2,7 @@ import { Hono } from 'hono';
 import { agentsRouter } from './routes/agents';
 import { appsRouter } from './routes/apps';
 import { authRouter } from './routes/auth';
+import { builderRouter } from './routes/builder';
 import { deploymentsRouter } from './routes/deployments';
 import { graphRouter } from './routes/graph';
 import { mcpRouter } from './routes/mcp';
@@ -13,11 +14,11 @@ import { tenantsRouter } from './routes/tenants';
 import { workflowsRouter } from './routes/workflows';
 
 const app = new Hono();
-
 app.get('/health', (c) => c.json({ ok: true, service: 'saas-studio-api' }));
 app.route('/v1/agents', agentsRouter);
 app.route('/v1/apps', appsRouter);
 app.route('/v1/auth', authRouter);
+app.route('/v1/builder', builderRouter);
 app.route('/v1/deployments', deploymentsRouter);
 app.route('/v1/graph', graphRouter);
 app.route('/v1/mcp', mcpRouter);
@@ -27,5 +28,4 @@ app.route('/v1/scorecards', scorecardsRouter);
 app.route('/v1/templates', templatesRouter);
 app.route('/v1/tenants', tenantsRouter);
 app.route('/v1/workflows', workflowsRouter);
-
 export default app;
