@@ -1,10 +1,33 @@
 'use client';
 
+import { useState } from 'react';
+import { api } from '@/lib/api-client';
+
 export function AppBlueprintPreview({ blueprint }: { blueprint: any }) {
+  const [status, setStatus] = useState('Ready');
   if (!blueprint) return <section className="rounded-3xl border border-white/10 bg-white/5 p-6 text-slate-400">Generate a blueprint to preview files.</section>;
+
+  async function saveToApp() {
+    if (!blueprint?.id) return setStatus('Missing blueprint id');
+    const result = await api.saveBlueprintToApp(blueprint.id, { appId: blueprint.appId || 'default-app' });
+    setStatus(JSON.stringify(result, null, 2));
+  }
+
+  async function exportBundle() {
+    if (!blueprint?.id) return setStatus('Missing blueprint id');
+    const result = await api.exportBlueprint(blueprint.id);
+    setStatus(JSON.stringify(result, null, 2));
+  }
+
   return (
     <section className="rounded-3xl border border-white/10 bg-white/5 p-6">
-      <h2 className="text-2xl font-bold">Generated App Blueprint</h2>
+      <div className="flex items-center justify-between gap-4">
+        <h2 className="text-2xl font-bold">Generated App Blueprint</h2>
+        <div className="flex gap-3">
+          <button onClick={saveToApp} className="rounded-xl border border-white/10 px-4 py-2 text-sm">Save to App</button>
+          <button onClick={exportBundle} className="rounded-xl bg-cyan-300 px-4 py-2 text-sm font-semibold text-slate-950">Export</button>
+        </div>
+      </div>
       <div className="mt-4 grid gap-3 md:grid-cols-2">
         {(blueprint.files || []).map((file: any) => (
           <div key={file.path} className="rounded-xl border border-white/10 bg-black/30 p-4">
@@ -13,7 +36,8 @@ export function AppBlueprintPreview({ blueprint }: { blueprint: any }) {
           </div>
         ))}
       </div>
-      <pre className="mt-6 max-h-96 overflow-auto rounded-xl bg-black/40 p-4 text-xs text-slate-300">{JSON.stringify(blueprint, null, 2)}</pre>
+      <pre className="mt-6 max-h-72 overflow-auto rounded-xl bg-black/40 p-4 text-xs text-slate-300">{JSON.stringify(blueprint, null, 2)}</pre>
+      <pre className="mt-4 max-h-48 overflow-auto rounded-xl border border-white/10 bg-black/30 p-4 text-xs text-slate-300">{status}</pre>
     </section>
   );
 }

@@ -28,5 +28,10 @@ export const api = {
   runScorecard: (scorecardId: string, input: Record<string, unknown>) => apiRequest(`/v1/scorecards/${scorecardId}/runs`, { method: 'POST', body: JSON.stringify(input) }),
   createOnboardingSession: (input: Record<string, unknown>) => apiRequest('/v1/onboarding/sessions', { method: 'POST', body: JSON.stringify(input) }),
   updateOnboardingSession: (sessionId: string, input: Record<string, unknown>) => apiRequest(`/v1/onboarding/sessions/${sessionId}`, { method: 'PATCH', body: JSON.stringify(input) }),
-  runOnboarding: (sessionId: string, input: Record<string, unknown>) => apiRequest(`/v1/onboarding/sessions/${sessionId}/run`, { method: 'POST', body: JSON.stringify(input) })
+  runOnboarding: (sessionId: string, input: Record<string, unknown>) => apiRequest(`/v1/onboarding/sessions/${sessionId}/run`, { method: 'POST', body: JSON.stringify(input) }),
+  createBuilderBlueprint: (input: Record<string, unknown>) => apiRequest('/v1/builder/app-blueprint', { method: 'POST', body: JSON.stringify(input) }),
+  listBuilderBlueprints: () => apiRequest('/v1/builder/blueprints'),
+  saveBlueprintToApp: (blueprintId: string, input: Record<string, unknown>) => apiRequest(`/v1/builder/blueprints/${blueprintId}/save-to-app`, { method: 'POST', body: JSON.stringify(input) }),
+  listAppFeatures: (appId: string) => apiRequest(`/v1/builder/apps/${appId}/features`),
+  exportBlueprint: (blueprintId: string) => apiRequest(`/v1/builder/blueprints/${blueprintId}/export`, { method: 'POST' })
 };
