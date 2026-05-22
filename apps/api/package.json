@@ -1,0 +1,1 @@
+{"name":"@unboxd/saas-studio-api","version":"0.1.0","private":true,"type":"module","scripts":{"dev":"tsx src/index.ts","build":"tsc -p tsconfig.json","typecheck":"tsc -p tsconfig.json --noEmit"},"dependencies":{"@unboxd/platform-core":"workspace:*","@unboxd/provider-appwrite":"workspace:*","hono":"^4.7.0","zod":"^3.24.1"},"devDependencies":{"tsx":"^4.19.2","typescript":"^5.6.3"}}
