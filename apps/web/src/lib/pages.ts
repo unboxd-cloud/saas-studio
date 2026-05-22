@@ -2,7 +2,10 @@ const basePages = ['apps','app-new','app-detail','auth-methods','auth-magic-url'
 
 const productAreas = ['auth','tenant','provider','integration','workflow','agent','mcp','deployment','governance','graph','data','schema','api','billing','notification','observability','security','settings','admin','customer'];
 const actions = ['overview','create','detail','edit','list','configure','run','logs','metrics','policies'];
+const enterpriseDomains = ['finance','hr','sales','marketing','support','legal','procurement','inventory','operations','manufacturing','healthcare','education','real-estate','logistics','insurance','banking','media','telecom','energy','public-sector'];
+const enterpriseActions = ['portal','dashboard','records','approvals','workflows','analytics','imports','exports','settings','audit'];
 
 export const expansionPages = productAreas.flatMap((area) => actions.map((action) => `${area}-${action}`));
-export const pages = Array.from(new Set([...basePages, ...expansionPages]));
+export const enterprisePages = enterpriseDomains.flatMap((domain) => enterpriseActions.map((action) => `${domain}-${action}`));
+export const pages = Array.from(new Set([...basePages, ...expansionPages, ...enterprisePages]));
 export const pageCount = pages.length;
